@@ -11,7 +11,7 @@ include("uncertain_values/test_uncertain_values.jl")
 include("uncertain_values/test_minmax.jl")
 include("uncertain_values/test_certain_values.jl")
 include("uncertain_values/test_populations.jl")
-
+include("uncertain_values/test_merging.jl")
 include("mathematics/test_mathematics.jl")
 
 # UncertainDatasets module tests
@@ -31,6 +31,9 @@ include("sampling_constraints/test_constrain_uncertainindexdatasets.jl")
 include("resampling/uncertain_values/test_resampling_certain_value.jl")
 include("resampling/uncertain_values/test_resampling_uncertainvalues.jl")
 include("resampling/uncertain_values/test_resampling_uncertainvalues_kde.jl")
+
+include("resampling/uncertain_datasets/test_resampling_elwise.jl")
+include("resampling/uncertain_vectors/test_resampling_vectors.jl")
 
 include("resampling/uncertain_datasets/test_resampling_datasets.jl")
 include("resampling/uncertain_datasets/test_resampling_with_constraints.jl")
