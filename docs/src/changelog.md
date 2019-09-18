@@ -1,3 +1,34 @@
+
+# Changelog
+
+## UncertainData.jl v0.4.0
+
+### New functionality
+
+- Introduce an abstract resampling type `AbstractUncertainDataResampling` for this 
+    package pending the implementation of `AbstractResampling` in StatsBase.jl.
+
+- Added `ConstrainedResampling` resampling scheme.
+
+- Resample vectors of uncertain values without constraints. Syntax:
+    1. `resample(::Vector{<:AbstractUncertainValue}` for single draws.
+    2. `resample(::Vector{<:AbstractUncertainValue}, ::Int}` for multiple draws.
+
+- Resample vectors of uncertain values with constraint(s) multiple times. Syntax:
+    1. `resample(::Vector{<:AbstractUncertainValue}, ::Union{SamplingConstraint, Vector{<:SamplingConstraint}}` for single draws.
+    2. `resample(::Vector{<:AbstractUncertainValue}, ::Union{SamplingConstraint, Vector{<:SamplingConstraint}}, ::Int` for multiple draws.
+
+## UncertainData.jl v0.3.0
+
+### New functionality
+
+- Added additional resampling methods for uncertain index and uncertain value datasets, 
+    allowing passing vectors of constraints that are mapped to each value in the dataset. The 
+    syntax is `resample(::AbstractUncertainValueDataset, ::Vector{<:SamplingConstraint}` for a 
+    single draw, and `resample(::AbstractUncertainValueDataset, ::Vector{<:SamplingConstraint}, n::Int`
+    for `n` draws.
+
+
 ## UncertainData.jl v0.2.3
 
 ### Improvements
