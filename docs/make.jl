@@ -5,6 +5,7 @@ using UncertainData
 using Distributions
 using KernelDensity
 using StatsBase
+using Measurements
 
 PAGES = [
     "index.md",
@@ -14,8 +15,9 @@ PAGES = [
         "uncertain_values/uncertainvalues_kde.md",
         "uncertain_values/uncertainvalues_fitted.md",
         "uncertain_values/uncertainvalues_theoreticaldistributions.md",
-        "uncertain_values/certainvalue.md",
-        "uncertain_values/populations.md",
+        "uncertain_values/uncertainvalues_certainvalue.md",
+        "uncertain_values/uncertainvalues_populations.md",
+        "uncertain_values/uncertainvalues_Measurements.md",
         "uncertain_values/merging.md"
     ],
 	"Uncertain datasets" => [
@@ -27,7 +29,12 @@ PAGES = [
 	],
     "Uncertain statistics" => [
         "Core statistics" => [
-            "uncertain_statistics/core_stats/core_statistics.md"
+            "uncertain_statistics/core_stats/core_statistics.md",
+            "uncertain_statistics/core_stats/core_statistics_point_estimates.md",
+            "uncertain_statistics/core_stats/core_statistics_pairwise_estimates.md",
+            "uncertain_statistics/core_stats/core_statistics_datasets_single_dataset_estimates.md",
+            "uncertain_statistics/core_stats/core_statistics_datasets_pairwise_estimates.md",
+            "uncertain_statistics/core_stats/core_statistics_datasets.md"
         ],
 
         "Hypothesis tests" => [

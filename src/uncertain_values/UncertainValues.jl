@@ -2,9 +2,11 @@ using Reexport
 
 @reexport module UncertainValues
     using IntervalArithmetic
+    import IntervalArithmetic: interval
     using Distributions
     using RecipesBase
     using StaticArrays
+    using Measurements
     import KernelDensity: KernelDensity, UnivariateKDE, default_bandwidth, kde
     import StatsBase: StatsBase,
         ProbabilityWeights, pweights, 
@@ -12,16 +14,32 @@ using Reexport
         Weights, weights,
         AnalyticWeights, aweights
 
-  
-    # Abstract types and common methods
-    include("AbstractUncertainValue.jl")
-    include("AbstractEmpirical.jl")
+    ##########################################
+    # Abstract types
+    ##########################################
+    include("abstract_types/AbstractUncertainValue.jl")
 
+    include("abstract_types/AbstractTheoreticalDistributionScalarValue.jl")
+
+    include("abstract_types/AbstractPopulation.jl")
+    include("abstract_types/AbstractScalarPopulation.jl")
+
+    include("abstract_types/AbstractEmpirical.jl")
+    
+    include("abstract_types/AbstractUncertainScalarKDE.jl")
+
+
+    ##########################################
     # Distributions
+    ##########################################
     include("distributions/assign_dist.jl")
 
-    # Fitted distribution type 
+    ##########################################
+    # Fitted distribution type
+    ##########################################
     include("distributions/fitted_distribution.jl")
+
+
 
     ##########################################
     # Composite uncertain scalar types
@@ -36,7 +54,7 @@ using Reexport
     include("UncertainScalarsKDE.jl")
 
     # Populations with weighted probabilities
-    include("Population.jl")
+    include("UncertainScalarPopulation.jl")
     
     # Certain values (i.e. values without uncertainty)
     include("CertainValue.jl")
@@ -52,6 +70,14 @@ using Reexport
     # Define common constructor, so a similar syntax may be used to construct
     # all types of uncertain values.
     include("UncertainValue.jl")
+
+    ##########################################
+    # Comparisons
+    ##########################################
+    include("operations/comparisons.jl")
+
+    # Conversions
+    include("convert.jl")
 
     export KernelDensity, UnivariateKDE, default_bandwidth, kde
         ProbabilityWeights, pweights, 

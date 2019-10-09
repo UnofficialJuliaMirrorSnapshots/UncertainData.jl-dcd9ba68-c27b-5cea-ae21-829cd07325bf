@@ -1,11 +1,17 @@
 using Reexport
 
 @reexport module Resampling
+
+    import ..UVAL_COLLECTION_TYPES
+
+    function resample end
+
     ###################################
     # Resampling schemes
     ###################################
     include("resampling_schemes/AbstractUncertainDataResampling.jl")
     include("resampling_schemes/ConstrainedResampling.jl")
+
 
     ###################################
     # Resampling uncertain values
@@ -23,6 +29,13 @@ using Reexport
     include("uncertain_values/resample_certainvalues.jl")
     include("uncertain_values/resample_uncertainvalues_populations.jl")
 
+    include("uncertain_values/resample_measurements.jl")
+
+    #########################################
+    # Resampling tuples of uncertain values
+    #########################################
+    include("uncertain_tuples/uncertain_tuples.jl")
+
     #########################################
     # Resampling vectors of uncertain values
     #########################################
@@ -36,7 +49,6 @@ using Reexport
     include("uncertain_dataset/resample_abstractuncertainvaluedataset_elwise.jl")
 
     # Specialized resampling for each type of dataset.
-    include("uncertain_dataset/resample_uncertaindataset.jl")
     include("uncertain_dataset/resample_uncertaindataset_index.jl")
     include("uncertain_dataset/resample_uncertaindataset_value.jl")
     include("uncertain_dataset/resample_uncertaindataset_indexvalue.jl")
@@ -56,6 +68,11 @@ using Reexport
     #########################################
     include("resampling_with_interpolation/resample_linear_interpolation.jl")
 
+    ################################
+    # Apply function with resampling
+    ################################
+    include("apply_func.jl")
+    
     export resample, resample_elwise
 end # module
 

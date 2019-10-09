@@ -1,6 +1,84 @@
 
 # Changelog
 
+## UncertainData.jl v0.5.0
+
+### Breaking changes
+
+- To allow easier multiple dispatch, the `indices` field of a `UncertainIndexValueDataset` is
+    now *always* an instance of a subtype of `AbstractUncertainIndexDataset`. The `values` field 
+    of a `UncertainIndexValueDataset` is now *always* an instance of a subtype of 
+    `AbstractUncertainValueDataset`.
+
+### New functionality
+
+- Experimental support for nested populations.
+
+- Added point-estimators for single uncertain values:
+    1. `harmmean(x::AbstractUncertainValue, n::Int)`
+    2. `geomean(x::AbstractUncertainValue, n::Int)`
+    3. `kurtosis(x::AbstractUncertainValue, n::Int; m = mean(x))`
+    4. `moment(x::AbstractUncertainValue, k, n::Int, m = mean(x))`
+    5. `percentile(x::AbstractUncertainValue, p, n::Int)`
+    6. `renyientropy(x::AbstractUncertainValue, α, n::Int)`
+    7. `rle(x::AbstractUncertainValue, n::Int)`
+    8. `sem(x::AbstractUncertainValue, n::Int)`
+    9. `skewness(x::AbstractUncertainValue, n::Int; m = mean(x))`
+    10. `span(x::AbstractUncertainValue, n::Int)`
+    11. `summarystats(x::AbstractUncertainValue, n::Int)`
+    12. `totalvar(x::AbstractUncertainValue, n::Int)`
+
+- Added statistical estimators for pairs of uncertain values:
+    1. `cov(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int; corrected::Bool = true)`
+    1. `cor(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `countne(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `counteq(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `corkendall(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `corspearman(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `maxad(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `meanad(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `msd(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `psnr(x::AbstractUncertainValue, y::AbstractUncertainValue, maxv, n::Int)`
+    1. `rmsd(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int; normalize = false)`
+    1. `sqL2dist(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `crosscor(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int; demean = true)`
+    1. `crosscov(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int; demean = true)`
+    1. `gkldiv(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+    1. `kldivergence(x::AbstractUncertainValue, y::AbstractUncertainValue, n::Int)`
+
+- Added `UncertainValue` constructor for distribution instances.
+- Added `UncertainValue` constructor for (potentially nested) truncated distribution instances.
+- Implemented `resample` methods for `NTuple`s of uncertain values.
+- Added `resample(f::Function, n::Int, x::AbstractUncertainValue, args...; kwargs...)`method for 
+    easy evaluation of point-estimates for single uncertain values.
+- Added support for `Measurement` instances from 
+    [Measurements.jl](https://github.com/JuliaPhysics/Measurements.jl).
+    These are treated as uncertain values represented by normal distibutions. 
+    Hence, they are given no extra treatment and error propagation is done by 
+    resampling, not by exact methods.
+- The uncertain value type `UncertainScalarPopulation` may now not only have real-valued scalars 
+    as elements of the population. It can now have uncertain values as members of the population!
+- Resampling implemented for `UncertainScalarPopulation` so that we can also sample population 
+    members that are uncertain values.
+- Implemented iteration for `UncertainScalarPopulation`.
+
+### Improvements
+
+- Improved subtyping for theoretical distributions.
+- Removed redundant `resample` methods for the `UncertainDataset` type. `UncertainDataset` 
+    is a subtype of `AbstractUncertainValueDataset` and has no special behaviour beyond 
+    that implemented for the abstract type, so now we just rely on multiple dispatch here.
+
+### Documentation
+
+- Improved documentation statistical methods.
+- Other minor documentation improvements.
+- Improved documentation for `TruncateStd`.
+
+### Bug fixes
+
+- Fixed error in `show` method for `AbstractUncertainValue`. Not subtypes of `AbstractUncertainValue` has the `distributions` field, so that is now removed from the `show` method.
+
 ## UncertainData.jl v0.4.0
 
 ### New functionality

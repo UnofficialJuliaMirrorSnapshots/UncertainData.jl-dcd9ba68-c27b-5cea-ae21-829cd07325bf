@@ -9,8 +9,6 @@ import Base:
     minimum, maximum,
     max, min
 
-abstract type AbstractUncertainScalarKDE{T} <: AbstractEmpiricalValue end
-
 """
     UncertainScalarKDE
 
@@ -21,7 +19,6 @@ An empirical value represented by a distribution estimated from actual data.
 - **`values`**: The values from which `distribution` is estimated.
 - **`range`**: The values for which the pdf is estimated.
 - **`pdf`**: The values of the pdf at each point in `range`.
-
 """
 struct UncertainScalarKDE{T} <: AbstractUncertainScalarKDE{T}
     distribution::KernelDensity.UnivariateKDE
@@ -34,7 +31,7 @@ end
 """
     TruncatedUncertainScalarKDE
 
-A truncated UncertainScalarKDE.
+A truncated [`UncertainScalarKDE`](@ref).
 """
 struct TruncatedUncertainScalarKDE{T} <: AbstractUncertainScalarKDE{T}
     distribution::KernelDensity.UnivariateKDE
@@ -130,7 +127,7 @@ support(uv::AbstractUncertainScalarKDE{T}) where T =
 
 
 """
-    getrangeindex(uv::AbstractUncertainScalarKDE, q::Float64)
+    getquantileindex(uv::AbstractUncertainScalarKDE, q::Float64)
 
 Return the index of the range/density value corresponding to the `q`-th quantile
 of an uncertain value furnished by a kernel density estimate.

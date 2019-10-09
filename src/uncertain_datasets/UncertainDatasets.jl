@@ -24,7 +24,7 @@ using Reexport
     include("UncertainValueDataset.jl")
     include("UncertainIndexDataset.jl")
 
-      # A generic type with all the functionality of `AbstractUncertainValueDataset`, if you 
+    # A generic type with all the functionality of `AbstractUncertainValueDataset`, if you 
     # can't be bothered with specifying 
     include("UncertainDataset.jl")
 
@@ -38,6 +38,21 @@ using Reexport
 
     # Conversion and promotion 
     include("conversions.jl")
+
+    """ 
+        UVAL_COLLECTION_TYPES = Union{UD, UV} where {
+            UD <: AbstractUncertainValueDataset, 
+            UV <: AbstractVector{T} where {
+                T <: AbstractUncertainValue}}
+        
+    A type union used to represent types of uncertain values. 
+    """
+    const UVAL_COLLECTION_TYPES = Union{UD, UV} where {
+        UD <: AbstractUncertainValueDataset, 
+        UV <: AbstractVector{T} where {
+            T <: AbstractUncertainValue}}
+
+    export UVAL_COLLECTION_TYPES
 
 end # module
 

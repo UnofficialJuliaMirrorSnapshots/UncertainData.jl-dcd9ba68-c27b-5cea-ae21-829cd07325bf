@@ -1,71 +1,28 @@
-This package implements many of the statistical algorithms in `StatsBase` for uncertain 
-values and uncertain datasets.
+# Statistics on uncertain values and collections
 
-The syntax for calling the algorithms is the same as in `StatsBase`, but
-the functions here accept an additional positional argument `n`. This additional 
-argument controls how many times the uncertain values are resampled to compute the 
-statistics. For theoretical distributions, both with known and fitted parameters, some of 
-the stats functions may be called without the `n` argument.
+This package extends many of the statistical algorithms in `StatsBase`
+for uncertain values. The statistics are computed using a resampling approach.
 
-### Statistics of single uncertain values
+To enable uncertain statistics, first run the following to bring the functions into scope.
 
-```@docs
-mean(uv::AbstractUncertainValue, n::Int)
+```julia
+using StatsBase
 ```
 
-```@docs
-median(uv::AbstractUncertainValue, n::Int)
-```
+## List
 
-```@docs
-middle(uv::AbstractUncertainValue, n::Int)
-```
+- [Point-estimates of statistics on single uncertain values](@ref syntax_statistics_uncertainvalue_single)
+- [Statistics on pairs of uncertain values](@ref syntax_statistics_uncertainvalue_pairs)
+- [Statistics on a single uncertain data collection](@ref syntax_statistics_collection_single)
+- [Statistics on pairs of uncertain data collections](@ref syntax_statistics_collection_pairs)
 
-```@docs
-std(uv::AbstractUncertainValue, n::Int)
-```
+## Collections of uncertain values
 
-```@docs
-var(uv::AbstractUncertainValue, n::Int)
-```
+In the documentation for the statistical methods, you'll notice that the inputs are supposed to be of type [`UVAL_COLLECTION_TYPES`](@ref). This is a type union representing all types of collections for which the statistical methods are defined. Currently, this includes `UncertainValueDataset`, `UncertainIndexDataset` 
+and vectors of uncertain values (`Vector{AbstractUncertainValue}`).
 
-```@docs
-quantile(uv::AbstractUncertainValue, q, n::Int)
-```
-
-### Statistics on datasets of uncertain values
-
-The following statistics are available for uncertain datasets (collections
-of uncertain values).
-
-```@docs
-mean(d::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-median(d::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-middle(d::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-std(d::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-var(d::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-quantile(d::AbstractUncertainValueDataset, q, n::Int)
-```
-
-```@docs
-cov(d1::AbstractUncertainValueDataset, d2::AbstractUncertainValueDataset, n::Int)
-```
-
-```@docs
-cor(d1::AbstractUncertainValueDataset, d2::AbstractUncertainValueDataset, n::Int)
+```julia
+const UVAL_COLLECTION_TYPES = Union{UD, UV} where {
+    UD <: AbstractUncertainValueDataset,
+    UV <: AbstractVector{T} where {T <: AbstractUncertainValue}}
 ```

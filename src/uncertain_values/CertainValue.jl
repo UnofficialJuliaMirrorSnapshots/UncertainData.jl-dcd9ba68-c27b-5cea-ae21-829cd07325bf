@@ -1,23 +1,22 @@
-
 """ 
     CertainValue
 
 A simple wrapper type for values with no uncertainty (i.e. represented by a scalar).
 
 ## Examples 
+
 The two following ways of constructing values without uncertainty are equivalent. 
 
 ```julia 
 u1, u2 = CertainValue(2.2), CertainValue(6)
-```
-
-```julia 
 w1, w2 = UncertainValue(2.2), UncertainValue(6)
 ```
 """
 struct CertainValue{T} <: AbstractUncertainValue
     value::T
 end
+
+Broadcast.broadcastable(x::CertainValue) = Ref(x.value)
 
 function summarise(uval::CertainValue)
     _type = typeof(uval)
@@ -51,19 +50,36 @@ function Base.getindex(x::CertainValue, I::Integer...)
     @boundscheck all([i == 1 for i in I]) || throw(BoundsError())
     x
 end
+
 Base.first(x::CertainValue) = x
 Base.last(x::CertainValue) = x
 Base.copy(x::CertainValue) = x
 
-UncertainValue(value::T) where {T <: Real} = CertainValue{T}(value)
+Base.minimum(v::CertainValue) = v.value
+Base.maximum(v::CertainValue) = v.value
+Base.isnan(x::CertainValue) = Base.isnan(x.value)
+Base.abs2(x::CertainValue) = Base.abs2(x.value)
 
 StatsBase.mean(v::CertainValue) = v.value
 StatsBase.median(v::CertainValue) = v.value
 StatsBase.middle(v::CertainValue) = v.value
 StatsBase.quantile(v::CertainValue, q) = v.value
+StatsBase.quantile(v::CertainValue, q, n::Int) = v.value
 StatsBase.std(v::CertainValue{T}) where {T} = zero(T)
-Base.minimum(v::CertainValue) = v.value
-Base.maximum(v::CertainValue) = v.value
+
+Base.rand(v::CertainValue) = v.value
+Base.float(v::CertainValue) = float(v.value)
+
+function Base.:<(x::CertainValue{T1}, y::CertainValue{T2}) where {
+        T1 <: Real, T2 <: Real} 
+    x.value < y.value
+end
+
+function IntervalArithmetic.interval(x::CertainValue{T1}, y::CertainValue{T2}) where {
+        T1 <: Real, T2 <: Real} 
+    interval(x.value, y.value)
+end 
+
 
 export
 CertainValue,

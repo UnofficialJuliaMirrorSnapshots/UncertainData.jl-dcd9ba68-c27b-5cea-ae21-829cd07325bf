@@ -1,8 +1,24 @@
 import ..UncertainValues:
     AbstractScalarPopulation
 
-resample(p::AbstractScalarPopulation) = rand(p)
-resample(p::AbstractScalarPopulation, n::Int) = rand(p, n)
+import Base.rand
+import StatsBase.sample
+    
+function resample(p::AbstractScalarPopulation)
+    rand(p)
+end
+    
+function resample(p::AbstractScalarPopulation, n::Int)
+    rand(p, n)
+end
+
+function resample(p::AbstractScalarPopulation, constraint::SamplingConstraint) 
+    rand(constrain(p, constraint))
+end
+        
+function resample(p::AbstractScalarPopulation, constraint::SamplingConstraint, n::Int)
+    rand(constrain(p, constraint), n)
+end
 
 constraints = [
     :(NoConstraint), 
@@ -17,12 +33,12 @@ constraints = [
 
 for constraint in constraints
     funcs = quote 
-        function resample(p::AbstractScalarPopulation, constraint::$(constraint))
-            resample(constrain(p, constraint))
+        function resample(p::AbstractScalarPopulation{T, PW}, constraint::$(constraint)) where {T, PW}
+            rand(constrain(p, constraint))
         end
         
-        function resample(p::AbstractScalarPopulation, constraint::$(constraint), n::Int)
-            resample(constrain(p, constraint), n)
+        function resample(p::AbstractScalarPopulation{T, PW}, constraint::$(constraint), n::Int) where {T, PW}
+            rand(constrain(p, constraint), n)
         end
     end
     eval(funcs)

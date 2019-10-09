@@ -2,12 +2,16 @@ using Reexport
 
 
 @reexport module SamplingConstraints
+    import Distributions 
     # Sampling constraints types
     include("constraint_definitions.jl")
 
     # Fallbacks when encountering incompatible sampling constraints
     include("fallback_constraints.jl")
 
+    # Truncate values 
+    include("truncation/truncate.jl")
+    
     # Constrain uncertain values
     include("constrain_uncertainvalue.jl")
     include("constrain_certain_value.jl")

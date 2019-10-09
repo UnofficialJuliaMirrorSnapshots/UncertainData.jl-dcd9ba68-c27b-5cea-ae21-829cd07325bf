@@ -11,9 +11,14 @@ using Reexport
     # Sampling constraints and resampling functions
     using ..Resampling
 
+    import ..UVAL_COLLECTION_TYPES
+
     # Definitions of statistical methods for UncertainDatasets
-    include("statsbase/core_stats_uncertainvalues.jl")
-	include("statsbase/core_stats_uncertaindatasets.jl")
+    include("statsbase/uncertain_values/core_stats_point_estimates.jl")
+    include("statsbase/uncertain_values/core_stats_pair_estimates.jl")
+	include("statsbase/uncertain_datasets/core_stats_uncertaindatasets.jl")
+    include("statsbase/uncertain_datasets/core_stats_uncertaindatasets_single_estimates.jl")
+    include("statsbase/uncertain_datasets/core_stats_uncertaindatasets_pairwise_estimates.jl")
 
     include("hypothesis_tests/mann_whitney.jl")
     include("hypothesis_tests/t_tests.jl")
