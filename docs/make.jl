@@ -69,8 +69,16 @@ PAGES = [
         "resampling/sequential/strictly_decreasing.md",
 
         "resampling/interpolation/interpolation.md",
-        "resampling/interpolation/gridded.md"
+        "resampling/interpolation/gridded.md",
+        "resampling/resampling_schemes/resampling_schemes_uncertain_value_collections.md",
+        "resampling/resampling_schemes/resampling_schemes_uncertain_indexvalue_collections.md",
+        "resampling/resampling_schemes/resampling_with_schemes_uncertain_value_collections.md",
+        "resampling/resampling_schemes/resampling_with_schemes_uncertain_indexvalue_collections.md"
         #"resampling/models/resampling_with_models.md"
+    ],
+
+    "Propagation of errors" => [
+        "propagation_of_errors/propagation_of_errors.md"
     ],
     
     "Mathematics" => [
