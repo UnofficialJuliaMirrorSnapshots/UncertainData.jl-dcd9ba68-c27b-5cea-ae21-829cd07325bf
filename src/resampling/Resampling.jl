@@ -3,6 +3,12 @@ using Reexport
 @reexport module Resampling
 
     import ..UVAL_COLLECTION_TYPES
+    import ..UncertainDatasets: 
+        AbstractUncertainValueDataset,
+        UncertainIndexValueDataset
+    import ..UncertainValues:
+        UncertainValue,
+        AbstractUncertainValue
 
     function resample end
 
@@ -10,14 +16,16 @@ using Reexport
     # Resampling schemes
     ###################################
     include("resampling_schemes/AbstractUncertainDataResampling.jl")
+    include("resampling_schemes/BinnedResamplings.jl")
     include("resampling_schemes/ConstrainedResampling.jl")
     include("resampling_schemes/ConstrainedValueResampling.jl")
     include("resampling_schemes/ConstrainedIndexValueResampling.jl")
     include("resampling_schemes/SequentialResampling.jl")
     include("resampling_schemes/SequentialInterpolatedResampling.jl")
+    include("resampling_schemes/binned_resamplings.jl")
 
     # Extend some methods to allow easier resampling.
-    include("resampling_with_schemes/extend_constrain_with_schemes.jl")
+    include("resampling_with_schemes/constrain_with_schemes.jl")
 
     ###################################
     # Resampling uncertain values
@@ -80,11 +88,18 @@ using Reexport
     include("apply_func.jl")
 
     ################################
+    # Resampling in-place
+    ################################
+    include("resampling_inplace.jl")
+
+    ################################
     # Resampling with schemes 
     ################################
-    include("resampling_with_schemes/methods_resamplings_schemes.jl")
-    
-    export resample, resample_elwise
+    include("resampling_with_schemes/resampling_schemes_binned.jl")
+    include("resampling_with_schemes/resampling_schemes_constrained.jl")
+    include("resampling_with_schemes/resampling_schemes_sequential.jl")
+
+    export resample, resample!, resample_elwise
 end # module
 
 

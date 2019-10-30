@@ -37,6 +37,10 @@ include("resampling/test_resampling_uncertain_tuples.jl")
 #############################################
 
 # Resampling schemes
+include("resampling/resampling_schemes/test_BinnedResampling.jl")
+include("resampling/resampling_schemes/test_BinnedWeightedResampling.jl")
+include("resampling/resampling_schemes/test_BinnedMeanResampling.jl")
+include("resampling/resampling_schemes/test_BinnedMeanWeightedResampling.jl")
 
 include("resampling/resampling_schemes/test_ConstrainedIndexValueResampling.jl")
 include("resampling/resampling_schemes/test_ConstrainedValueResampling.jl")
@@ -82,6 +86,10 @@ include("resampling/uncertain_vectors/test_resampling_vectors.jl")
 #-----------------------------
 include("resampling/uncertain_datasets/sequential/test_resampling_sequential_increasing.jl")
 include("resampling/uncertain_datasets/sequential/test_resampling_sequential_decreasing.jl")
+
+# Resampling inplace.
+#-----------------------------
+include("resampling/test_resampling_inplace.jl")
 
 #############################################
 # Resampling uncertain datasets element-wise

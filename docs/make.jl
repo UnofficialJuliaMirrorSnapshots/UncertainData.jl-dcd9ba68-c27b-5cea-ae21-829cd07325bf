@@ -73,7 +73,8 @@ PAGES = [
         "resampling/resampling_schemes/resampling_schemes_uncertain_value_collections.md",
         "resampling/resampling_schemes/resampling_schemes_uncertain_indexvalue_collections.md",
         "resampling/resampling_schemes/resampling_with_schemes_uncertain_value_collections.md",
-        "resampling/resampling_schemes/resampling_with_schemes_uncertain_indexvalue_collections.md"
+        "resampling/resampling_schemes/resampling_with_schemes_uncertain_indexvalue_collections.md",
+        "resampling/resampling_inplace.md"
         #"resampling/models/resampling_with_models.md"
     ],
 
@@ -84,6 +85,11 @@ PAGES = [
     "Mathematics" => [
         "mathematics/elementary_operations.md",
         "mathematics/trig_functions.md"
+    ],
+
+    "Tutorials" => [
+        "tutorials/tutorial_overview.md",
+        "tutorials/tutorial_transforming_data_to_regular_grid.md"
     ],
 
     "implementing_algorithms_for_uncertaindata.md",
