@@ -1,7 +1,25 @@
 
 # Changelog
 
-## Uncertaindata.jl v0.9.1
+## UncertainData.jl v0.10.0
+
+### Improvements
+
+- The `resample` family of methods for vectors now dispatches on `AbstractVector`s, which allows more 
+    flexibility. Now, for example `LArray`s from `LabelledArrays.jl` also can be resampled.
+- Relax `resample(x::Real)` to `resample(x::Number)`.
+
+## UncertainData.jl v0.9.3
+
+- `dimension` is no longer exported.
+
+## UncertainData.jl v0.9.2
+
+### New features
+
+- Added `SensitivityTests` module defining the abstract type `SensitivityTest`.
+
+## UncertainData.jl v0.9.1
 
 ### Bug fixes
 
