@@ -1,6 +1,33 @@
 
 # Changelog
 
+## UncertainData.jl v0.10.3
+
+### Improvements
+
+- The user can now control how each bin is represented when using `BinnedWeightedResampling`. 
+    One can now provide `BinnedWeightedResampling{UncertainScalarKDE}`, 
+    `BinnedWeightedResampling{UncertainScalarPopulaton}` or 
+    `BinnedWeightedResampling{RawValues}`. Corresponding `bin` methods are also implemented.
+
+### Documentation
+
+- Fixed missing doc string for `bin!`.
+
+## UncertainData.jl v0.10.2
+
+### Improvements
+
+- The user can now control how each bin is represented when using `BinnedResampling`. One can now 
+    provide `BinnedResampling{UncertainScalarKDE}`, `BinnedResampling{UncertainScalarPopulaton}` or 
+    `BinnedResampling{RawValues}`.
+- Explicit `bin` methods for binning both scalar valued data and uncertain data.
+
+### Documentation
+
+- Added documentation for binning methods.
+- Improved documentation for `UncertainScalarKDE`.
+
 ## UncertainData.jl v0.10.0
 
 ### Improvements
